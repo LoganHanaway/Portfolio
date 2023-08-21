@@ -1,0 +1,336 @@
+
+:root {
+	--pro-color-hs: 80 80%;
+	--pro-color-hsl: var(--pro-color-hs) 50%;
+	--pro-color: hsl(var(--pro-color-hsl));
+
+	--maybe-color-hs: 51 100%;
+	--maybe-color-hsl: var(--maybe-color-hs) 50%;
+	--maybe-color: hsl(var(--maybe-color-hsl));
+
+	--con-color-hs: 0 100%;
+	--con-color-hsl: var(--con-color-hs)  50%;
+	--con-color: hsl(var(--con-color-hsl));
+
+}
+
+html {
+	background: linear-gradient(-45deg, red, #333333, #333333, green);
+	background-size: 400% 400%;
+	position: relative;
+	animation: change 20s ease-in-out infinite;
+	overflow: visible;
+}
+
+@keyframes change {
+	0%{
+		background-position: 0 50%;
+	}
+	50%{
+		background-position: 100% 50%;
+	}
+	100%{
+		background-position: 0 50%;
+	}
+}
+
+:root.vs {
+	--con-color-hs: 200 80%;
+	--con-color-hsl: var(--con-color-hs)  50%;
+	--con-color: hsl(var(--con-color-hsl));
+}
+
+body {
+	min-height: 100vh;
+	box-sizing: border-box;
+	padding: 1em;
+	font: 100% Helvetica Neue, sans-serif;
+	text-align: center;
+	
+}
+
+button {
+	cursor: pointer;
+}
+
+main {
+	font-size: 120%;
+}
+
+main > h1 {
+	position: relative;
+	width: fit-content;
+	margin: .5em auto 1em;
+	color: hsl(317 100% 54%);
+	font-size: 177%;
+	line-height: 1.1;
+	text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.5), 0 0 1em hsl(317 100% 54%);
+}
+
+main > h1 span {
+		display: block;
+		color: #1f7aff;
+		position: relative;
+		z-index: 1;
+		text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.5), 0 0 1em #1f7aff;
+	}
+main > h1 span::before {
+	pointer-events: none;
+	content: "";
+	position: absolute;
+	background: #1f7aff;
+	top: 120%;
+	left: 0%;
+	width: 100%;
+	height: 100%;
+	transform: perspective(1.5em) rotateX(40deg) scale(1, 0.5);
+	filter: blur(1em);
+	opacity: 0.9;
+}
+
+html:not(.vs) main > h1::before,
+	html:not(.vs) main > h1::after {
+		content: "?";
+		position: absolute;
+		left: 90%;
+		top: -0.5rem;
+		min-width: 1.1em;
+		text-align: center;
+		border-radius: 50%;
+
+		color: var(--background);
+		font-size: 250%;
+		font-weight: bold;
+	}
+
+html:not(.vs) main > h1::before {
+		background: rgba(0,0,0,.1);
+		z-index: -1;
+		color: transparent;
+	}
+
+h1 {
+	text-align: center;
+}
+
+article {
+	--padding: 2.5em;
+
+	position: relative;
+	display: flex;
+	flex-wrap: wrap;
+	max-width: 35em;
+	padding: var(--padding);
+	margin: 2em auto;
+	background: #404040;
+	color: black;
+	box-shadow: 10px 10px 250px #1f7aff;
+}
+
+article::before {
+	pointer-events: none;
+	content: "";
+	position: absolute;
+	background: #1f7aff;
+	top: 120%;
+	left: 0%;
+	width: 100%;
+	height: 100%;
+	transform: perspective(4em) rotateX(40deg) scale(.8, 0.2);
+	filter: blur(30em);
+	opacity: 0.25;
+	overflow: visible;
+	
+}
+
+article > header {
+		width: 100%;
+		padding: inherit;
+		padding-bottom: calc(var(--padding) / 2);
+		margin: calc(-1 * var(--padding));
+		margin-bottom: 0;
+		transition: .5s background;
+	}
+
+article > header.answer {
+			background: hsl(var(--color-hs) 40%);
+			color: white;
+		}
+
+article > header.answer-Yes {
+			--color-hs: var(--pro-color-hs);
+		}
+
+article > header.answer-Maybe {
+			--color-hs: var(--maybe-color-hs);
+			background: #4d004d;
+			color: black;
+		}
+
+article > header.answer-No {
+			--color-hs: var(--con-color-hs);
+		}
+
+article > header h1 {
+			margin: 0;
+			font-size: 250%;
+			font-weight: 300
+		}
+
+article > header h1 + p {
+				text-align: center;
+			}
+
+article > section {
+		--color: hsl(var(--color-hs) 50%);
+		flex: 1;
+		margin: 2em 1px 0;
+		text-align: left
+	}
+
+article > section h2 {
+			color: white;
+			margin: 0;
+			padding: .3rem .5rem;
+			border-bottom: .2em solid;
+			line-height: 1;
+			font-weight: normal;
+			color: hsl(var(--color-hs) 40%);
+		}
+
+article > section ul {
+			list-style: none;
+			padding: 0;
+			margin: 0
+		}
+
+article > section ul li {
+				margin: 1px 0;
+				transition: .5s background;
+				padding: .8em;
+				background: hsl(var(--color-hs) 90%);
+				color: hsl(var(--color-hs) 20%)
+			}
+
+article > section ul li p {
+					margin: 0;
+				}
+
+article > section ul li meter {
+					--width: 8em;
+					display: inline-block;
+					vertical-align: middle;
+					width: var(--width);
+					height: .8em;
+					margin-right: .3em;
+					background: transparent
+				}
+
+article > section ul li meter::-webkit-meter-bar {
+						background: transparent;
+						border: 1px solid;
+						border-left-width: calc(var(--width) / 5);
+					}
+
+article > section ul li meter::-webkit-meter-optimum-value,
+					article > section ul li meter::-webkit-meter-suboptimum-value {
+						background: currentColor;
+					}
+
+article > section .weight {
+			margin-top: 1em;
+			font-size: 80%;
+			color: hsl(var(--color-hs) 30%);
+		}
+
+article > section .reason {
+			--overlay: hsl(0 0% 100% / calc(.9 - .05 * var(--weight)));
+			background: hsl(var(--color-hs) 50%) linear-gradient(var(--overlay), var(--overlay));
+		}
+
+article > section {
+
+		/* Pros */
+	}
+
+article > section:first-of-type {
+			--color-hs: var(--pro-color-hs);
+		}
+
+article > section {
+
+		/* Cons */
+	}
+
+article > section:nth-of-type(2) {
+			--color-hs: var(--con-color-hs);
+		}
+
+main .mv-add-decision {
+	padding: .25em 1em;
+	border: 0.125em solid hsl(317 100% 54%);
+	background: #262626;
+	color: hsl(317 100% 54%);
+	font-size: 120%;
+	border-radius: .25em;
+	text-decoration: none;
+	text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.5), hsl(317 100% 54%);
+	box-shadow: inset 0 0 1em hsl(317 100% 54%), 0 0 1em hsl(317 100% 54%);
+	position: relative;
+}
+
+main .mv-add-decision::before {
+	pointer-events: none;
+	content: "";
+	position: absolute;
+	background: hsl(317 100% 54%);
+	top: 120%;
+	left: 0%;
+	width: 100%;
+	height: 100%;
+	transform: perspective(1em) rotateX(40deg) scale(1, 0.45);
+	filter: blur(1em);
+	opacity: 0.7;
+}
+
+main .mv-add-decision::after {
+	content: "";
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	box-shadow: 0 0 2em 0.5em hsl(317 100% 54%);
+	opacity: 0;
+	background-color: hsl(317 100% 54%);
+	z-index: -1;
+	transition: opacity 100ms linear;
+}
+
+main .mv-add-decision:hover, .mv-add-decision:hover:focus {
+		background: hsl(317 100% 54%);
+		color:  hsl(323 21% 16%);
+		text-shadow: none;
+	}
+
+main .mv-add-decision:hover::after{
+	opacity: 1;
+}
+
+footer {
+	margin-top: 2em;
+	color: #1f7aff;
+	text-shadow:  0 0 0.125em hsl(0 0% 100% / .5), 0 0 1em black;
+}
+
+
+
+::placeholder {
+	color: inherit;
+	opacity: .6;
+}
+
+p#neon {
+	color: hsl(317 100% 54%);
+	text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.5), hsl(317 100% 54%);
+}
